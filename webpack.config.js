@@ -19,7 +19,7 @@ module.exports = {
 	},
 	plugins: [
 		new WebpackShellPlugin({
-			onBuildEnd: NODE_ENV === 'development' ? ['npm run start'] : [],
+			onBuildEnd: NODE_ENV === 'development' ? ['NODE_ENV=development nodemon build/index.js'] : [],
 		}),
 	],
 	module: {
