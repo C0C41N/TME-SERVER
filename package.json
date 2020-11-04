@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "webpack",
 		"start:dev": "NODE_ENV=development webpack",
-		"start": "NODE_ENV=development nodemon build/index.js"
+		"start": "node build/index.js"
 	},
 	"devDependencies": {
 		"@types/node": "^11.9.3",
