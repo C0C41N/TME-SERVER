@@ -19,7 +19,7 @@ module.exports = {
 	},
 	plugins: [
 		new WebpackShellPlugin({
-			onBuildEnd: ['yarn run:dev'],
+			onBuildEnd: NODE_ENV === 'development' ? ['npm run start'] : [],
 		}),
 	],
 	module: {
