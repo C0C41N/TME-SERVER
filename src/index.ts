@@ -1,33 +1,18 @@
-import { Application, json, Request, Response } from 'express';
+import { Application } from 'express';
+
+import { get_api } from './get';
+import { cors, upload } from './middlewares';
+import { post_api } from './post';
 
 import express = require('express');
-import cors = require('cors');
 
 const app: Application = express();
 const { PORT = 3000 } = process.env;
 
-const allowed = ['http://localhost:4300'];
-
-app.use(
-	json(),
-	cors({
-		origin: (origin, callback) => {
-			const allow = !origin || allowed.includes(origin);
-			return callback(allow ? null : new Error(), allow);
-		},
-	})
-);
-
-app.get('/', (req: Request, res: Response) => {
-	res.send({
-		message: 'listening for POST requests...',
-	});
-});
-
-app.post('/', (req: Request, res: Response) => {
-	res.send(JSON.stringify(req.body, null, '\t'));
-});
-
+app.use(cors);
+app.use(upload);
+app.get('/', get_api);
+app.post('/', post_api);
 app.listen(PORT);
 
 export default app;
