@@ -1,4 +1,4 @@
-const path = require('path');
+const { resolve } = require('path');
 const nodeExternals = require('webpack-node-externals');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 
@@ -11,10 +11,15 @@ module.exports = {
 	watch: NODE_ENV === 'development',
 	externals: [nodeExternals()],
 	output: {
-		path: path.resolve(__dirname, 'build'),
+		path: resolve(__dirname, 'build'),
 		filename: 'index.js',
 	},
 	resolve: {
+		alias: {
+			post: resolve(__dirname, 'src/post'),
+			api: resolve(__dirname, 'src/api'),
+			src: resolve(__dirname, 'src'),
+		},
 		extensions: ['.ts', '.js'],
 	},
 	plugins: [
